@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  error_codes:
+    record_not_found:
+      code: 1
+      message: It appears when we don't have a record in our database, or your parameters incorrect.
+    image_name_should_be_unique:
+      code: 2
+      message: Image with this name already is in database   

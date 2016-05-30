@@ -6,10 +6,9 @@ class Image
   include ActiveModel::Validations
   include Rails.application.routes.url_helpers
   field :width, type: Float
-  field :heigh, type: Float
+  field :height, type: Float
   field :image_name, type: String
-  field :image_path, type: String
-  validates_uniqueness_of :image_name
+  validates_uniqueness_of :image_name, presence: true
   mount_uploader :media, ImageUploader, mount_on: :media_filename
 
 
