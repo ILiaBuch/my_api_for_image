@@ -12,15 +12,25 @@ class ApplicationController < ActionController::API
 
 
   private
+
+  def current_user
+     User.where(access_key: params[:access_key]).first
+  end
+  
   def specify_json_error(code, status, options = {})
     status = Rack::Utils::SYMBOL_TO_STATUS_CODE[status] if status.is_a? Symbol
-
     error = {
       code: I18n.t("error_codes.#{code}.code"),
       title: I18n.t("error_codes.#{code}.message"),
       status: status
     }.merge(options)
-
     render json: { errors: [error] }, status: status
    end
+
+   protected
+   def authenticate
+     user = User.where(access_key: params[:access_key]).first
+     render json: {status: :unathorized} and return false unless user
+   end
+
 end
