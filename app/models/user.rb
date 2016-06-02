@@ -7,6 +7,7 @@ class User
 
   private
   def generate_access_key
+    return if access_key.present?
      temp_arr = SecureRandom.hex(rand(1..9)).split('').map {|i| i.to_i unless i =~ /[a-zA-Z]/}.compact
      if temp_arr.length == 6
        temp_arr

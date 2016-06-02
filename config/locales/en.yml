@@ -26,4 +26,19 @@ en:
       message: It appears when we don't have a record in our database, or your parameters incorrect.
     image_name_should_be_unique:
       code: 2
-      message: Image with this name already is in database   
+      message: Image with this name already is in database
+    already_have_access:
+       code: 3
+       message: You already have acces_key in your request, you can use other resourses of api
+    do_not_have_access_key:
+      code: 4
+      message:  You don't have  acces_key, for get acces_key have to make POST request on http://localhost:3000/users.json
+    request_has_incorrect_format:
+      code: 5
+      message: The request should be in JSON format, and should be as the folowe example {  image=> { data=> data=>some_image/any_format;base64,(string encoded image to base64), filename=> Example_name.png,width=> 2050,height=> 1750} }
+    some_folder_is_absent:
+      code: 6
+      message: Server error - need to check on server  folders that required in controllers with method .url or .path or any gems, probably some folder or image missing
+    you_are_using_incorrect_url:
+      code: 7
+      message: You should use urls which  provided in documentation  

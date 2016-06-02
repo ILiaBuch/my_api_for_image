@@ -17,6 +17,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => "carrierwave/mongoid"
 gem 'mongoid-grid_fs'
+gem 'whenever', :require => false
 
 
 # To use ActiveModel has_secure_password

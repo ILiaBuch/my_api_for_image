@@ -11,9 +11,6 @@ class Image
   validates_uniqueness_of :image_name, presence: true
   mount_uploader :media, ImageUploader, mount_on: :media_filename
 
-
-  # field :_id, type: String, default: ->{ image_name.to_s.parameterize }
-  # embedded_in :user
   belongs_to :user
 
    def self.resize_image(self_image_with_path, width, heigh)
@@ -21,6 +18,4 @@ class Image
       image.resize "#{width}x#{heigh}"
       image.write (self_image_with_path)
    end
-
-
 end
