@@ -4,7 +4,7 @@ class GalleryController < ApplicationController
   REGEXP = /\Adata:([-\w]+\/[-\w\+\.]+)?;base64,(.*)/m
 
   def index
-      @gallery = Image.all
+      @gallery = current_user.images.all
       images = []
       @gallery.each_with_index do |image, index|
         images[index] = Hash[id: image.id, media_filename: image.media_filename, width: image.width, height: image.height, url: image_url_for_json(image.media.url)]
@@ -13,12 +13,11 @@ class GalleryController < ApplicationController
   end
 
   def show
-    @image = Image.find(params[:id])
+    @image = current_user.images.find(params[:id])
     render json: { id: @image.id ,image: image_url_for_json(@image.media.url), width: @image.width, height: @image.height }, status: :ok
   end
 
   def create
-
     @image = current_user.images.new(gallery_params)
   			data = params[:image][:data]
         original_filename = params[:image][:filename]
@@ -38,15 +37,12 @@ class GalleryController < ApplicationController
   end
 
   def update
-      @image = Image.find(params[:id])
+      @image = current_user.images.find(params[:id])
       if @image.update_attributes(gallery_params)
         Image.resize_image("public/" + @image.media.url, @image.width, @image.height )
         render json: { id: @image.id, image: image_url_for_json(@image.media.url), width: @image.width, height: @image.height  }, status: :accepted
       end
   end
-
-
-
 
   private
   def image_url_for_json(image_path)
