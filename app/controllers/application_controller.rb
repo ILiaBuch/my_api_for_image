@@ -23,6 +23,10 @@ class ApplicationController < ActionController::API
     specify_json_error(:you_are_using_incorrect_url, :not_found, details: exception.message)
   end
 
+  def raise_not_found
+    raise ActionController::RoutingError.new("No route matches #{params[:unmatched_route]}")
+  end
+
   private
 
   def current_user
