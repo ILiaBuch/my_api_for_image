@@ -9,7 +9,7 @@ class GalleryController < ApplicationController
       @gallery.each_with_index do |image, index|
         images[index] = Hash[id: image.id, media_filename: image.media_filename, width: image.width, height: image.height, url: image_url_for_json(image.media.url)]
       end
-      respond_with images
+      render json: { images: images }, status: :ok
   end
 
   def show
