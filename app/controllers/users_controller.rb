@@ -4,7 +4,7 @@ class UsersController < ApplicationController
    def index
      if current_user
       @user = current_user
-      render json: { access_key: @user.access_key }, status: :ok
+      render json: { id: @user.id, access_key: @user.access_key }, status: :ok
     else
       render json: { errors: [message:  "You don not have  acces_key, for get acces_key have to make POST request on /users.json" , status: 401 ] }, status: :unauthorized
     end
