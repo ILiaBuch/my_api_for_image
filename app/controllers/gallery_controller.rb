@@ -19,21 +19,21 @@ class GalleryController < ApplicationController
 
   def create
     @image = current_user.images.new(gallery_params)
-  			data = params[:image][:data]
+  	data = params[:image][:data]
         original_filename = params[:image][:filename]
         metadata = data.match(REGEXP) || []
-		   	image = Base64.decode64(metadata[2])
+        image = Base64.decode64(metadata[2])
         new_file=File.new("public/uploads/tmp/#{original_filename}", 'wb')
         new_file.write(image)
         suffix_extension = (original_filename.match(/((.jpg)|(.png)|(.jpeg)|(.gif))\Z/)).to_s
         original_filename.slice!(suffix_extension)
         @image.image_name = original_filename
-  			@image.media = new_file
-  		if @image.save!
+  	@image.media = new_file
+  	if @image.save!
           File.delete(new_file)
           Image.resize_image("public/" + @image.media.url, @image.width, @image.height )
           render json: { id: @image.id ,image: image_url_for_json(@image.media.url), width: @image.width, height: @image.height  }, status: :created
-  		end
+  	end
   end
 
   def update
