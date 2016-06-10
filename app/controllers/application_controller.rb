@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
   end
 
   rescue_from 'Mongoid::Errors::Validations' do |exception|
-    specify_json_error(:image_name_should_be_unique, :unprocessable_entity, details: exception.message)
+    specify_json_error(:image_name_should_be_valid, :unprocessable_entity, details: exception.message)
   end
 
   rescue_from 'ActionController::ParameterMissing' do |exception|

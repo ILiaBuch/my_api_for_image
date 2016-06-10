@@ -24,9 +24,9 @@ en:
     record_not_found:
       code: 1
       message: It appears when we don't have a record in our database, or your parameters incorrect.
-    image_name_should_be_unique:
+    image_name_should_be_valid:
       code: 2
-      message: Image with this name already is in database
+      message: Image with this name already is in database, or some image's params is incorrect or absents
     already_have_access:
        code: 3
        message: You already have acces_key in your request, you can use other resourses of api
@@ -41,4 +41,4 @@ en:
       message: Server error - need to check on server  folders that required in controllers with method .url or .path or any gems, probably some folder or image missing
     you_are_using_incorrect_url:
       code: 7
-      message: You should use urls which  provided in documentation  
+      message: You should use urls which  provided in documentation

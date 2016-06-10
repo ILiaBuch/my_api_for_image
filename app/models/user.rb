@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   field :access_key
   # embeds_many :images
+  validates_uniqueness_of :access_key, presence: true
   has_many :images
   before_create :generate_access_key
 
