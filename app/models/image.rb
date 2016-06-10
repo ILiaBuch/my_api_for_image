@@ -8,6 +8,8 @@ class Image
   field :width, type: Float
   field :height, type: Float
   field :image_name, type: String
+  validates_presence_of :width
+  validates_presence_of :height 
   validates_uniqueness_of :image_name, presence: true
   mount_uploader :media, ImageUploader, mount_on: :media_filename
 
